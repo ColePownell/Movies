@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Movies.Models;
 using System.Diagnostics;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Movies.Controllers
 {
@@ -30,7 +31,9 @@ namespace Movies.Controllers
 
         public IActionResult Directors()
         {
-            return View();
+			List<Director> directors;
+			directors = _context.Directors.ToList();
+            return View(directors);
         }
 
 		public IActionResult Login()
