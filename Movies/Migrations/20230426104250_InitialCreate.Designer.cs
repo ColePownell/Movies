@@ -9,7 +9,7 @@ using Movies.Models;
 namespace Movies.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20230426073212_InitialCreate")]
+    [Migration("20230426104250_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,43 @@ namespace Movies.Migrations
                             DirectorId = 3,
                             FirstMovie = "test movie3",
                             Name = "Test Name3"
+                        });
+                });
+
+            modelBuilder.Entity("Movies.Models.Movie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Test Movie Description 1",
+                            Poster = "\\images\\OIP.jpg",
+                            Title = "Test Movie Title 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Test Movie Description 2",
+                            Poster = "\\images\\OIP.jpg",
+                            Title = "Test Movie Title 1"
                         });
                 });
 

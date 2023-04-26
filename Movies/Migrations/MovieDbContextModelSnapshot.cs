@@ -56,6 +56,43 @@ namespace Movies.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Movies.Models.Movie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Movies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Test Movie Description 1",
+                            Poster = "\\images\\OIP.jpg",
+                            Title = "Test Movie Title 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Test Movie Description 2",
+                            Poster = "\\images\\OIP.jpg",
+                            Title = "Test Movie Title 1"
+                        });
+                });
+
             modelBuilder.Entity("Movies.Models.UserModel", b =>
                 {
                     b.Property<int>("UserId")

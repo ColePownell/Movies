@@ -5,19 +5,26 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Movies.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Movies.Controllers;
 
 namespace Movies
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+		private readonly IWebHostEnvironment _webHostEnvironment;
+
+
+		public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             Configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IConfiguration Configuration { get; }
@@ -34,7 +41,7 @@ namespace Movies
 
 			services.AddHttpContextAccessor();
 
-
+			services.AddTransient<HomeController>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

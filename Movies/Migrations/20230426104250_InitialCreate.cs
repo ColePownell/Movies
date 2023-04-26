@@ -21,6 +21,21 @@ namespace Movies.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Movies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Poster = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserModels",
                 columns: table => new
                 {
@@ -47,6 +62,15 @@ namespace Movies.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Movies",
+                columns: new[] { "Id", "Description", "Poster", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Test Movie Description 1", "\\images\\OIP.jpg", "Test Movie Title 1" },
+                    { 2, "Test Movie Description 2", "\\images\\OIP.jpg", "Test Movie Title 1" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "UserModels",
                 columns: new[] { "UserId", "Email", "Password", "SessionId", "Username" },
                 values: new object[] { 1, "bianya@mail.uc.edu", "12345", null, "yifan" });
@@ -56,6 +80,9 @@ namespace Movies.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Directors");
+
+            migrationBuilder.DropTable(
+                name: "Movies");
 
             migrationBuilder.DropTable(
                 name: "UserModels");
