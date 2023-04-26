@@ -1,0 +1,27 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" asp-controller="Home" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PosterFile" class="control-label"></label><br />
+        <input asp-for="PosterFile" type="file" />
+        <span asp-validation-for="PosterFile" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
