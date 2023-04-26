@@ -36,14 +36,14 @@
                         {
                             <span class="navbar-text">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("Username")!</span>
                             <div class="ml-3">
-                                <form asp-area="" asp-controller="Home" asp-action="Logout" method="post">
+                                <form asp-area="" asp-controller="Login" asp-action="Logout" method="post">
                                     <button type="submit" class="btn btn-link">Logout</button>
                                 </form>
                             </div>
                         }
                         else
                         {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                         }
                     </div>
                 </div>

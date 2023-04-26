@@ -9,8 +9,8 @@ using Movies.Models;
 namespace Movies.Migrations
 {
     [DbContext(typeof(MovieDbContext))]
-    [Migration("20230426030214_Director")]
-    partial class Director
+    [Migration("20230426073212_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -36,80 +36,11 @@ namespace Movies.Controllers
             return View(directors);
         }
 
-		public IActionResult Login()
-		{
-			return View();
-		}
-
-		public ActionResult Register()
-		{
-			return View();
-		}
-
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-		[HttpPost]
-		public IActionResult Login(UserModel model)
-		{
-			var user = _context.UserModels.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
-			if (user != null)
-			{
-				user.SessionId = HttpContext.Session.Id;
-				_context.SaveChanges();
-
-				HttpContext.Session.SetInt32("UserId", user.UserId);
-				HttpContext.Session.SetString("SessionId", user.SessionId);
-				HttpContext.Session.SetString("Username", user.Username);
-
-				return RedirectToAction("Index", "Home");
-			}
-			else
-			{
-				ModelState.AddModelError("", "Invalid username or password.");
-				return View(model);
-			}
-		}
-
-		[HttpPost]
-		public IActionResult Logout()
-		{
-			HttpContext.Session.Clear();
-			return RedirectToAction("Index", "Home");
-		}
-
-		[HttpPost]
-		public IActionResult Register(UserModel model)
-		{
-			if (ModelState.IsValid)
-			{
-				var existingUser = _context.UserModels.FirstOrDefault(u => u.Username == model.Username);
-				if (existingUser != null)
-				{
-					ModelState.AddModelError("Username", "Username already exists.");
-				}
-				else
-				{
-					var user = new UserModel
-					{
-						Username = model.Username,
-						Password = model.Password,
-						ConfirmPassword = model.ConfirmPassword,
-						Email = model.Email
-					};
-
-					_context.UserModels.Add(user);
-					_context.SaveChanges();
-
-					return RedirectToAction("Login", "Home");
-				}
-			}
-
-			return View(model);
-		}
 
 	}
 }
