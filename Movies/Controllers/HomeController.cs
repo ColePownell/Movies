@@ -31,12 +31,20 @@ namespace Movies.Controllers
 			return View(movies);
 		}
 
-        public IActionResult Aboutus()
+        public IActionResult AboutusCole()
         {
             return View();
         }
+		public IActionResult AboutusYifan()
+		{
+			return View();
+		}
+		public IActionResult AboutusChelsea()
+		{
+			return View();
+		}
 
-        public IActionResult Directors()
+		public IActionResult Directors()
         {
 			List<Director> directors;
 			directors = _context.Directors.ToList();
